@@ -1,0 +1,4 @@
+Django==2.2.4
+psycopg2
+djangorestframework==3.10.2
+django-extensions
