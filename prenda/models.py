@@ -1,10 +1,10 @@
 from django.db import models
 
 
-CAMISA = 'FR'
-CAMISETA = 'SO'
-PANTALON = 'JR'
-CALZADO = 'SR'
+CAMISA = 'camisa'
+CAMISETA = 'camiseta'
+PANTALON = 'pantalon'
+CALZADO = 'calzado'
 
 TIPO_PRENDA = [
     (CAMISA, 'camisa'),
@@ -30,3 +30,6 @@ class Prenda(models.Model):
         choices=TIPO_PRENDA,
         default=None
     )
+
+    def __str__(self):
+        return f"{self.marca} - {self.modelo}"
