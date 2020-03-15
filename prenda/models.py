@@ -33,3 +33,21 @@ class Prenda(models.Model):
 
     def __str__(self):
         return f"{self.marca} - {self.modelo}"
+
+
+class Match(models.Model):
+    prenda_1 = models.ForeignKey('prenda.Prenda', on_delete=models.CASCADE, related_name='prenda_1')
+    prenda_2 = models.ForeignKey('prenda.Prenda', on_delete=models.CASCADE, related_name='prenda_2')
+    positivos = models.IntegerField(
+        default = 0
+    )
+    negativos = models.IntegerField(
+        default=0
+    )
+    neutrales = models.IntegerField(
+        default=0
+    )
+
+    @property
+    def total_matches(self):
+        return self.positivos + self.negativos + self.neutrales
