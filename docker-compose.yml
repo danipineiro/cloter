@@ -1,9 +1,11 @@
 version: '3'
 
 services:
-  db:
+  database:
     image: postgres
-  web:
+    environment:
+      - POSTGRES_PASSWORD=postgres
+  backend:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -11,4 +13,4 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      - database
