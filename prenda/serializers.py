@@ -15,6 +15,10 @@ class MatchSerializer(serializers.ModelSerializer):
         model = Match
         fields = ('prenda_1', 'prenda_2', 'positivos', 'negativos', 'neutrales')
 
+    def validate(self, data):
+        if data['prenda_1'].tipo == data['prenda_2'].tipo:
+            raise serializers.ValidationError("Las prendas no pueden ser del mismo tipo")
+        return data
 
     def create(self, validated_data):
         prenda_1 = validated_data.get('prenda_1')
