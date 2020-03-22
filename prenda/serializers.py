@@ -1,3 +1,5 @@
+from django.core.exceptions import ObjectDoesNotExist
+
 from .models import Prenda, Match
 from rest_framework import serializers
 
@@ -19,16 +21,11 @@ class MatchSerializer(serializers.ModelSerializer):
         prenda_2 = validated_data.get('prenda_2')
 
         try:
-            match = Match.objects.filter(prenda_1__in=(prenda_1, prenda_2), prenda_2__in=(prenda_1, prenda_2))
-            print('ya existe')
-        except:
-            pass
-        return super().create(validated_data)
-
-        # try:
-        #     obj = Match.objects.get(prenda_1=validated_data.get('prenda_1', None),
-        #                             prenda_2=validated_data.get('prenda_2', None))
-        # except:
-        #     pass
-        # return instance
-
+            match = Match.objects.get(prenda_1__in=(prenda_1, prenda_2), prenda_2__in=(prenda_1, prenda_2))
+            match.positivos += validated_data['positivos']
+            match.negativos += validated_data['negativos']
+            match.neutrales += validated_data['neutrales']
+            match.save()
+            return match
+        except ObjectDoesNotExist:
+            return super().create(validated_data)
