@@ -1,6 +1,8 @@
+from rest_framework.viewsets import GenericViewSet
+
 from .models import Prenda, Match
-from rest_framework import viewsets
-from.serializers import PrendaSerializer, MatchSerializer
+from rest_framework import viewsets, mixins
+from .serializers import PrendaSerializer, MatchSerializer
 
 
 class PrendaViewSet(viewsets.ModelViewSet):
@@ -11,6 +13,6 @@ class PrendaViewSet(viewsets.ModelViewSet):
     serializer_class = PrendaSerializer
 
 
-class MatchViewSet(viewsets.ModelViewSet):
+class MatchViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.ListModelMixin, GenericViewSet):
     queryset = Match.objects.all().order_by('-id')
     serializer_class = MatchSerializer

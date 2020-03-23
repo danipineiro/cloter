@@ -1,6 +1,5 @@
 from django.db import models
 
-
 CAMISA = 'camisa'
 CAMISETA = 'camiseta'
 PANTALON = 'pantalon'
@@ -49,7 +48,7 @@ class Match(models.Model):
     )
 
     positivos = models.IntegerField(
-        default = 0
+        default=0
     )
 
     negativos = models.IntegerField(

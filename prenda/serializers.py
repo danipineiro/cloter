@@ -3,17 +3,28 @@ from django.core.exceptions import ObjectDoesNotExist
 from .models import Prenda, Match
 from rest_framework import serializers
 
+ACCIONES = [
+    (1, 'positivo'),
+    (0, 'neutral'),
+    (-1, 'negativo'),
+]
+
 
 class PrendaSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Prenda
         fields = ('marca', 'modelo', 'tipo')
 
 
 class MatchSerializer(serializers.ModelSerializer):
+
+    accion = serializers.ChoiceField(choices=ACCIONES, write_only=True)
+
     class Meta:
         model = Match
-        fields = ('prenda_1', 'prenda_2', 'positivos', 'negativos', 'neutrales')
+        fields = ('prenda_1', 'prenda_2', 'positivos', 'negativos', 'neutrales', 'accion')
+        read_only_fields = ('positivos', 'negativos', 'neutrales')
 
     def validate(self, data):
         if data['prenda_1'].tipo == data['prenda_2'].tipo:
@@ -26,10 +37,24 @@ class MatchSerializer(serializers.ModelSerializer):
 
         try:
             match = Match.objects.get(prenda_1__in=(prenda_1, prenda_2), prenda_2__in=(prenda_1, prenda_2))
-            match.positivos += validated_data['positivos']
-            match.negativos += validated_data['negativos']
-            match.neutrales += validated_data['neutrales']
+            if validated_data['accion'] > 0:
+                match.positivos += 1
+            elif validated_data['accion'] < 0:
+                match.negativos += 1
+            else:
+                match.neutrales += 1
+
             match.save()
             return match
+
         except ObjectDoesNotExist:
-            return super().create(validated_data)
+            match = Match(prenda_1=prenda_1, prenda_2=prenda_2)
+            if validated_data['accion'] > 0:
+                match.positivos += 1
+            elif validated_data['accion'] < 0:
+                match.negativos += 1
+            else:
+                match.neutrales += 1
+
+            match.save()
+            return match
