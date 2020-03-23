@@ -1,5 +1,3 @@
-from django.core.exceptions import ObjectDoesNotExist
-
 from .models import Prenda, Match
 from rest_framework import serializers
 
@@ -47,7 +45,7 @@ class MatchSerializer(serializers.ModelSerializer):
             match.save()
             return match
 
-        except ObjectDoesNotExist:
+        except Match.DoesNotExist:
             match = Match(prenda_1=prenda_1, prenda_2=prenda_2)
             if validated_data['accion'] > 0:
                 match.positivos += 1
