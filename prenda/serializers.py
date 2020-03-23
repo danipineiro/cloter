@@ -35,7 +35,6 @@ class MatchSerializer(serializers.ModelSerializer):
 
         try:
             match = Match.objects.get(prenda_1__in=(prenda_1, prenda_2), prenda_2__in=(prenda_1, prenda_2))
-
         except Match.DoesNotExist:
             match = Match(prenda_1=prenda_1, prenda_2=prenda_2)
 
