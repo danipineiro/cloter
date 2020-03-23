@@ -35,24 +35,16 @@ class MatchSerializer(serializers.ModelSerializer):
 
         try:
             match = Match.objects.get(prenda_1__in=(prenda_1, prenda_2), prenda_2__in=(prenda_1, prenda_2))
-            if validated_data['accion'] > 0:
-                match.positivos += 1
-            elif validated_data['accion'] < 0:
-                match.negativos += 1
-            else:
-                match.neutrales += 1
-
-            match.save()
-            return match
 
         except Match.DoesNotExist:
             match = Match(prenda_1=prenda_1, prenda_2=prenda_2)
-            if validated_data['accion'] > 0:
-                match.positivos += 1
-            elif validated_data['accion'] < 0:
-                match.negativos += 1
-            else:
-                match.neutrales += 1
 
-            match.save()
-            return match
+        if validated_data['accion'] > 0:
+            match.positivos += 1
+        elif validated_data['accion'] < 0:
+            match.negativos += 1
+        else:
+            match.neutrales += 1
+
+        match.save()
+        return match
