@@ -2,3 +2,6 @@ Django==3.0.4
 psycopg2
 djangorestframework==3.11.0
 django-extensions
+
+pytest==5.4.1
+pytest-django==3.8.0
