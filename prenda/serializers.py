@@ -9,14 +9,12 @@ ACCIONES = [
 
 
 class PrendaSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Prenda
         fields = ('marca', 'modelo', 'tipo')
 
 
 class MatchSerializer(serializers.ModelSerializer):
-
     accion = serializers.ChoiceField(choices=ACCIONES, write_only=True)
 
     class Meta:
@@ -38,11 +36,11 @@ class MatchSerializer(serializers.ModelSerializer):
         except Match.DoesNotExist:
             match = Match(prenda_1=prenda_1, prenda_2=prenda_2)
 
-        if validated_data['accion'] > 0:
+        if validated_data['accion'] == 1:
             match.positivos += 1
-        elif validated_data['accion'] < 0:
+        elif validated_data['accion'] == -1:
             match.negativos += 1
-        else:
+        elif validated_data['accion'] == 0:
             match.neutrales += 1
 
         match.save()

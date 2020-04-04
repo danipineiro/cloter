@@ -8,7 +8,6 @@ from prenda.models import Prenda, CAMISA
 class PrendaTest(APITestCase):
 
     def test_create_prenda_OK(self):
-
         url = reverse('prenda-list')
 
         data = {
@@ -40,7 +39,6 @@ class PrendaTest(APITestCase):
         self.assertEqual(Prenda.objects.count(), 0)
 
     def test_list_prendas(self):
-
         url = reverse('prenda-list')
 
         response = self.client.get(url)
