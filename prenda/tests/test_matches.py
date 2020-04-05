@@ -83,3 +83,49 @@ class MatchTest(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Match.objects.count(), 0)
+
+    def test_total_matches(self):
+        p1 = Prenda.objects.create(tipo=CAMISA)
+        p2 = Prenda.objects.create(tipo=CAMISETA)
+
+        url = reverse('match-list')
+
+        data = {
+            'prenda_1': p1.id,
+            'prenda_2': p2.id,
+            'accion': 1,
+        }
+
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data.get('positivos'), 1)
+        self.assertEqual(response.data.get('negativos'), 0)
+        self.assertEqual(response.data.get('neutrales'), 0)
+        self.assertEqual(response.data.get('total_matches'), 1)
+
+        data = {
+            'prenda_1': p1.id,
+            'prenda_2': p2.id,
+            'accion': -1,
+        }
+
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data.get('positivos'), 1)
+        self.assertEqual(response.data.get('negativos'), 1)
+        self.assertEqual(response.data.get('neutrales'), 0)
+        self.assertEqual(response.data.get('total_matches'), 2)
+
+        data = {
+            'prenda_1': p1.id,
+            'prenda_2': p2.id,
+            'accion': 0,
+        }
+
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data.get('positivos'), 1)
+        self.assertEqual(response.data.get('negativos'), 1)
+        self.assertEqual(response.data.get('neutrales'), 1)
+        self.assertEqual(response.data.get('total_matches'), 3)
+

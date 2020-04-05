@@ -19,8 +19,8 @@ class MatchSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Match
-        fields = ('prenda_1', 'prenda_2', 'positivos', 'negativos', 'neutrales', 'accion')
-        read_only_fields = ('positivos', 'negativos', 'neutrales')
+        fields = ('prenda_1', 'prenda_2', 'positivos', 'negativos', 'neutrales', 'accion', 'total_matches')
+        read_only_fields = ('positivos', 'negativos', 'neutrales', 'total_matches')
 
     def validate(self, data):
         if data['prenda_1'].tipo == data['prenda_2'].tipo:
