@@ -17,3 +17,9 @@ services:
       - "80:80"
     depends_on:
       - postgres
+
+  nginx:
+    container_name: nginx
+    build: angular
+    ports:
+      - "8080:80"
