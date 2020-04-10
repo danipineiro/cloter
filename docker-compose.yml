@@ -1,16 +1,19 @@
-version: '3'
+version: "3"
 
 services:
-  database:
+
+  postgres:
     image: postgres
     environment:
-      - POSTGRES_PASSWORD=postgres
-  backend:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    - POSTGRES_PASSWORD=postgres
+
+  django:
+    container_name: django
+    build: django
+    command: python manage.py runserver 0.0.0.0:80
     volumes:
-      - .:/code
+      - ./django:/code
     ports:
-      - "8000:8000"
+      - "80:80"
     depends_on:
-      - database
+      - postgres
