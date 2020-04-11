@@ -61,3 +61,6 @@ target/
 # Pycharm
 .idea
 venv
+
+#Postgres
+postgres-data/
