@@ -11,8 +11,8 @@ ACCIONES = [
 class PrendaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Prenda
-        fields = ('marca', 'modelo', 'tipo')
-
+        fields = ('marca', 'modelo', 'tipo', 'imagen')
+        read_only_fields = ('imagen',)
 
 class MatchSerializer(serializers.ModelSerializer):
     accion = serializers.ChoiceField(choices=ACCIONES, write_only=True)

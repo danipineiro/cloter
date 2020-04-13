@@ -1,12 +1,30 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {PrendaService} from "../prenda/prenda.service";
 
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+    selector: 'app-tab3',
+    templateUrl: 'tab3.page.html',
+    styleUrls: ['tab3.page.scss']
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit {
 
-  constructor() {}
+    public listaPrendas = [];
+
+    constructor(
+        private prendaService: PrendaService
+    ) {
+    }
+
+    ngOnInit(): void {
+        this.prendaService.getPrendas().subscribe(
+            (response: any) => {
+                console.log(response.results);
+                this.listaPrendas = response.results;
+            },
+            error => {
+
+            })
+    }
+
 
 }

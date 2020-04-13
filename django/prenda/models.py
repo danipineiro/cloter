@@ -30,6 +30,11 @@ class Prenda(models.Model):
         default=None
     )
 
+    imagen = models.URLField(
+        null=True,
+        blank=True,
+    )
+
     def __str__(self):
         return f"{self.marca} - {self.modelo}"
 
