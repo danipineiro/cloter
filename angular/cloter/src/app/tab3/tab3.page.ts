@@ -18,13 +18,8 @@ export class Tab3Page implements OnInit {
     ngOnInit(): void {
         this.prendaService.getPrendas().subscribe(
             (response: any) => {
-                console.log(response.results);
                 this.listaPrendas = response.results;
-            },
-            error => {
-
-            })
+            });
     }
-
 
 }

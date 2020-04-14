@@ -1,0 +1,42 @@
+- model: prenda.prenda
+  pk: 1
+  fields:
+    marca: levis
+    modelo: '501'
+    tipo: pantalon
+    imagen: https://outletvip.net/wp-content/uploads/2017/04/Levis-501-Original-Fit-Vaqueros-Hombre-0-300x300.jpg
+- model: prenda.prenda
+  pk: 2
+  fields:
+    marca: vans
+    modelo: oldskool
+    tipo: calzado
+    imagen: https://www.sneakitup.com/archivos/201802/vans-old-skool-baratas-300x300x80xX.png?1
+- model: prenda.prenda
+  pk: 3
+  fields:
+    marca: dickies
+    modelo: sacramento
+    tipo: camisa
+    imagen: https://i.ebayimg.com/images/g/9zUAAOSwuDFcd9LA/s-l300.jpg
+- model: prenda.prenda
+  pk: 4
+  fields:
+    marca: levis
+    modelo: basic
+    tipo: camiseta
+    imagen: https://www.susuela.com/image/cache/catalog/PRIMAVERA%202019/LEVIS/177830140%20a-300x300.jpg
+- model: prenda.prenda
+  pk: 5
+  fields:
+    marca: dr marteens
+    modelo: '1460'
+    tipo: calzado
+    imagen: https://m.media-amazon.com/images/S/aplus-media/sota/a00ff882-c042-4796-9fa0-d0810799cfff._CR40,0,400,400_PT0_SX300__.jpg
+- model: prenda.prenda
+  pk: 6
+  fields:
+    marca: tommy hilfiger
+    modelo: azul liso
+    tipo: camisa
+    imagen: https://images-na.ssl-images-amazon.com/images/I/917bpf8vJHL._AC_UL300_SR300,300_.jpg
