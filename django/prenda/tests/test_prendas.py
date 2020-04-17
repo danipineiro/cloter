@@ -2,7 +2,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from prenda.models import Prenda, CAMISA
+from prenda.models import Prenda, CAMISA, CALZADO
 
 
 class PrendaTest(APITestCase):
@@ -57,3 +57,21 @@ class PrendaTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['count'], 4)
         self.assertEqual(len(response.data['results']), 4)
+
+    def test_parejas_prendas_random_OK(self):
+        Prenda.objects.create(tipo=CAMISA)
+        Prenda.objects.create(tipo=CALZADO)
+        url = reverse('prenda-pareja-random')
+
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 2)
+        self.assertFalse(response.data[0].get('tipo') == response.data[1].get('tipo'))
+
+    def test_parejas_prendas_random_FAIL(self):
+        Prenda.objects.create(tipo=CAMISA)
+        Prenda.objects.create(tipo=CAMISA)
+        url = reverse('prenda-pareja-random')
+
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
