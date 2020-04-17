@@ -11,9 +11,14 @@ export class PrendaService {
 
     constructor(
         private http: HttpClient,
-    ) {}
+    ) {
+    }
 
-    public getPrendas(){
+    public getPrendas() {
         return this.http.get(`${this.API_URL}prendas/`)
+    }
+
+    public getParejaPrendasRandom() {
+        return this.http.get(`${this.API_URL}prendas/pareja_random`)
     }
 }
