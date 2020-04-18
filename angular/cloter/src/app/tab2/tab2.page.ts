@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PrendaService} from "../prenda/prenda.service";
+import {MatchService} from "../match/match.service";
 
 @Component({
     selector: 'app-tab2',
@@ -13,15 +14,16 @@ export class Tab2Page implements OnInit {
     public prenda_2: any;
 
     constructor(
-        private prendaService: PrendaService
+        private prendaService: PrendaService,
+        private matchService: MatchService,
     ) {
     }
 
     ngOnInit(): void {
-        this.getParejaprendasRandom();
+        this.getParejaPrendasRandom();
     }
 
-    private getParejaprendasRandom() {
+    private getParejaPrendasRandom() {
         this.prendaService.getParejaPrendasRandom().subscribe(
             (response: any) => {
                 this.prenda_1 = response[1];
@@ -30,8 +32,14 @@ export class Tab2Page implements OnInit {
             });
     }
 
-    public enviarMatch(){
-        this.getParejaprendasRandom();
+    public enviarMatch(accion: number) {
+        this.matchService.enviarVoto(this.prenda_1.id, this.prenda_2.id, accion).subscribe(
+            (response: any) => {
+                this.getParejaPrendasRandom();
+            },
+            (error: any) => {
+                this.getParejaPrendasRandom();
+            });
     }
 
 }

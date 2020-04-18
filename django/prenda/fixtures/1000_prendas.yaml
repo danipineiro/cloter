@@ -40,3 +40,59 @@
     modelo: azul liso
     tipo: camisa
     imagen: https://images-na.ssl-images-amazon.com/images/I/917bpf8vJHL._AC_UL300_SR300,300_.jpg
+- model: prenda.prenda
+  pk: 7
+  fields:
+    marca: dickies
+    modelo: sacramento rojo
+    tipo: camisa
+    imagen: https://images-na.ssl-images-amazon.com/images/I/410sfGX%2Bt1L._SY300_QL70_ML2_.jpg
+- model: prenda.prenda
+  pk: 8
+  fields:
+    marca: Dockers
+    modelo: chino
+    tipo: pantalon
+    imagen: https://i.ebayimg.com/images/g/DLsAAOSw0zdedJfi/s-l300.jpg
+- model: prenda.prenda
+  pk: 9
+  fields:
+    marca: Adidas
+    modelo: Classic
+    tipo: camiseta
+    imagen: https://i.ebayimg.com/images/g/fhAAAOSw6NZdcFGT/s-l300.jpg
+- model: prenda.prenda
+  pk: 10
+  fields:
+    marca: Nike
+    modelo: Air Force High
+    tipo: calzado
+    imagen: https://exclusiveshopperu.com/wp-content/uploads/2019/06/Nike-Air-Force-1-High-07-LV8-WB-300x300.jpg
+- model: prenda.prenda
+  pk: 11
+  fields:
+    marca: Element
+    modelo: basic
+    tipo: camiseta
+    imagen: https://images-na.ssl-images-amazon.com/images/I/31h8kgeAVdL._SY300_QL70_ML2_.jpg
+- model: prenda.prenda
+  pk: 12
+  fields:
+    marca: Converse
+    modelo: Chuck Taylor
+    tipo: calzado
+    imagen: https://i.pinimg.com/600x315/3b/26/b3/3b26b306e74ccc02dc9efd6af13dee28.jpg
+- model: prenda.prenda
+  pk: 13
+  fields:
+    marca: Converse
+    modelo: Player
+    tipo: calzado
+    imagen: https://i.ebayimg.com/images/g/H64AAOSwVcpei2C~/s-l300.jpg
+- model: prenda.prenda
+  pk: 14
+  fields:
+    marca: Levis
+    modelo: Slim fit
+    tipo: camisa
+    imagen: https://outletvip.net/wp-content/uploads/2017/04/Camisa-Levis-Sunset-Roja-0-300x300.jpg
