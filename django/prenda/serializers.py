@@ -14,6 +14,7 @@ class PrendaSerializer(serializers.ModelSerializer):
         fields = ('id', 'marca', 'modelo', 'tipo', 'imagen')
         read_only_fields = ('imagen',)
 
+
 class MatchSerializer(serializers.ModelSerializer):
     accion = serializers.ChoiceField(choices=ACCIONES, write_only=True)
 
@@ -45,3 +46,14 @@ class MatchSerializer(serializers.ModelSerializer):
 
         match.save()
         return match
+
+
+class MatchDetailSerializer(serializers.ModelSerializer):
+
+    prenda_1 = PrendaSerializer(read_only=True)
+    prenda_2 = PrendaSerializer(read_only=True)
+
+    class Meta:
+        model = Match
+        fields = ('prenda_1', 'prenda_2', 'positivos', 'negativos', 'neutrales', 'total_matches')
+        read_only_fields = ('prenda_1', 'prenda_2', 'positivos', 'negativos', 'neutrales', 'total_matches')

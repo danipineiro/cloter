@@ -1,10 +1,11 @@
+from django.db.models import Q
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from .models import Prenda, Match
 from rest_framework import viewsets, mixins, status
-from .serializers import PrendaSerializer, MatchSerializer
+from .serializers import PrendaSerializer, MatchSerializer, MatchDetailSerializer
 
 
 class PrendaViewSet(viewsets.ModelViewSet):
@@ -32,6 +33,17 @@ class PrendaViewSet(viewsets.ModelViewSet):
         ]
 
         serializer = self.get_serializer(prendas, many=True)
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['get'])
+    def matches(self, request, pk=None):
+        try:
+            matches = Match.objects.filter((Q(prenda_1=Prenda.objects.get(pk=pk))
+                                            | Q(prenda_2=Prenda.objects.get(pk=pk))))
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = MatchDetailSerializer(matches, many=True)
         return Response(serializer.data)
 
 
