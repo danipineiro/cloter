@@ -16,7 +16,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let prenda of listaPrendas">
-        <ion-card>
+        <ion-card (click)="abrirPrendaDetail(prenda.id)">
           <ion-img [src]="prenda.imagen"></ion-img>
           <ion-card-header>
             <ion-card-title>{{ prenda.marca }}</ion-card-title>
