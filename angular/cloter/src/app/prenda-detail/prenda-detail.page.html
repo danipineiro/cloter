@@ -1,11 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Prenda detalle</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ng-container *ngIf="prendaData">
 
-<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+      </ion-buttons>
+      <ion-title>{{ prendaData.marca }} {{ prendaData.modelo }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-  <h1>prenda detalle</h1>
+  <ion-content>
 
-</ion-content>
+    <h1>prenda detalle</h1>
+
+  </ion-content>
+</ng-container>

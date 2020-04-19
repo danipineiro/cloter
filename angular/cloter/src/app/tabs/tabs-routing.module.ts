@@ -36,7 +36,7 @@ const routes: Routes = [
               import('../tab3/tab3.module').then(m => m.Tab3PageModule)
           },
           {
-            path: 'prenda-detail',
+            path: 'prenda-detail/:id',
             loadChildren: () => import('../prenda-detail/prenda-detail.module').then(m => m.PrendaDetailPageModule)
           }
         ]

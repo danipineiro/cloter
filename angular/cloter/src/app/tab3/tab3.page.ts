@@ -25,8 +25,7 @@ export class Tab3Page implements OnInit {
   }
 
   public abrirPrendaDetail(id: number) {
-    console.log(id);
-    this.router.navigateByUrl('/tabs/tab3/prenda-detail');
+    this.router.navigateByUrl(`/tabs/tab3/prenda-detail/${id}`);
   }
 
 }

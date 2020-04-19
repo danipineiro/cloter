@@ -3,22 +3,26 @@ import {HttpClient} from '@angular/common/http';
 
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class PrendaService {
 
-    API_URL = 'http://localhost/api/';
+  API_URL = 'http://localhost/api/';
 
-    constructor(
-        private http: HttpClient,
-    ) {
-    }
+  constructor(
+    private http: HttpClient,
+  ) {
+  }
 
-    public getPrendas() {
-        return this.http.get(`${this.API_URL}prendas/`)
-    }
+  public getPrendas() {
+    return this.http.get(`${this.API_URL}prendas/`)
+  }
 
-    public getParejaPrendasRandom() {
-        return this.http.get(`${this.API_URL}prendas/pareja_random`)
-    }
+  public getParejaPrendasRandom() {
+    return this.http.get(`${this.API_URL}prendas/pareja_random`)
+  }
+
+  getPrendaDetail(id: number) {
+    return this.http.get(`${this.API_URL}prendas/${id}`)
+  }
 }
