@@ -37,9 +37,13 @@ class PrendaViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get'])
     def matches(self, request, pk=None):
+        """
+        Devuelve los matches de una prenda
+        Ordenacion: el mayor numero de positivos primero
+        """
         try:
             matches = Match.objects.filter((Q(prenda_1=Prenda.objects.get(pk=pk))
-                                            | Q(prenda_2=Prenda.objects.get(pk=pk))))
+                                            | Q(prenda_2=Prenda.objects.get(pk=pk)))).order_by('-positivos')
         except:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
