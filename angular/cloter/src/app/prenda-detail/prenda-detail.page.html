@@ -1,4 +1,4 @@
-<ng-container *ngIf="prendaData">
+<ng-container *ngIf="!loading">
 
   <ion-header>
     <ion-toolbar>
@@ -20,9 +20,29 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
-
-    <h1>prenda detalle</h1>
-
-  </ion-content>
+   <ion-content>
+      <ion-list>
+        <ion-item *ngFor="let match of prendaMatches">
+          <ion-avatar slot="start">
+            <img [src]="match.prenda.imagen">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ match.prenda.marca }}</h2>
+            <h3>{{ match.prenda.modelo }}</h3>
+            <div>
+              <ion-grid>
+                <ion-row class="ion-align-items-center">
+                  <ion-col [size]="3">
+                    <ion-icon name="heart-circle-outline"></ion-icon> {{ match.positivos }}
+                  </ion-col>
+                  <ion-col [size]="3">
+                    <ion-icon name="close-circle-outline"></ion-icon>  {{ match.negativos }}
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+   </ion-content>
 </ng-container>

@@ -25,4 +25,8 @@ export class PrendaService {
   getPrendaDetail(id: number) {
     return this.http.get(`${this.API_URL}prendas/${id}`)
   }
+
+  getPrendaMatches(id: number) {
+    return this.http.get(`${this.API_URL}prendas/${id}/matches`)
+  }
 }
