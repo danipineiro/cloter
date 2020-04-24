@@ -14,8 +14,8 @@ export class PrendaService {
   ) {
   }
 
-  public getPrendas() {
-    return this.http.get(`${this.API_URL}prendas/`)
+  public getPrendas(page:number) {
+    return this.http.get(`${this.API_URL}prendas/?page=${page}`)
   }
 
   public getParejaPrendasRandom() {
