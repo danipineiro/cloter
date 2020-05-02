@@ -64,13 +64,13 @@ class Match(models.Model):
         default=0
     )
 
+    porcentaje_like = models.IntegerField(
+        default=0
+    )
+
     def __str__(self):
         return f"{self.prenda_1} --- {self.prenda_2}: ({self.total_matches})"
 
     @property
     def total_matches(self):
         return self.positivos + self.negativos + self.neutrales
-
-    @property
-    def porcentaje_like(self):
-        return int((self.positivos / self.total_matches) * 100)

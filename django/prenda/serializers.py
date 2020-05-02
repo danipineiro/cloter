@@ -44,6 +44,8 @@ class MatchSerializer(serializers.ModelSerializer):
         elif validated_data['accion'] == 0:
             match.neutrales += 1
 
+        match.porcentaje_like = int((match.positivos / match.total_matches) * 100)
+
         match.save()
         return match
 

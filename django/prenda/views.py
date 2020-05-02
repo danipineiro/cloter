@@ -43,7 +43,7 @@ class PrendaViewSet(viewsets.ModelViewSet):
         """
         try:
             matches = Match.objects.filter((Q(prenda_1=Prenda.objects.get(pk=pk))
-                                            | Q(prenda_2=Prenda.objects.get(pk=pk)))).order_by('-positivos')
+                                            | Q(prenda_2=Prenda.objects.get(pk=pk)))).order_by('-porcentaje_like')
         except:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -52,5 +52,5 @@ class PrendaViewSet(viewsets.ModelViewSet):
 
 
 class MatchViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.ListModelMixin, GenericViewSet):
-    queryset = Match.objects.all().order_by('-porcentaje_like')
+    queryset = Match.objects.all().order_by('-id')
     serializer_class = MatchSerializer
