@@ -52,5 +52,5 @@ class PrendaViewSet(viewsets.ModelViewSet):
 
 
 class MatchViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.ListModelMixin, GenericViewSet):
-    queryset = Match.objects.all().order_by('-id')
+    queryset = Match.objects.all().order_by('-porcentaje_like')
     serializer_class = MatchSerializer

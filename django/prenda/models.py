@@ -70,3 +70,7 @@ class Match(models.Model):
     @property
     def total_matches(self):
         return self.positivos + self.negativos + self.neutrales
+
+    @property
+    def porcentaje_like(self):
+        return int((self.positivos / self.total_matches) * 100)

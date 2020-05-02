@@ -55,5 +55,6 @@ class MatchDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Match
-        fields = ('prenda_1', 'prenda_2', 'positivos', 'negativos', 'neutrales', 'total_matches')
-        read_only_fields = ('prenda_1', 'prenda_2', 'positivos', 'negativos', 'neutrales', 'total_matches')
+        fields = ('prenda_1', 'prenda_2', 'positivos', 'negativos', 'neutrales', 'total_matches', 'porcentaje_like')
+        read_only_fields = ('prenda_1', 'prenda_2', 'positivos', 'negativos', 'neutrales', 'total_matches',
+                            'porcentaje_like')
