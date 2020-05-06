@@ -1,5 +1,7 @@
 from django.db import models
 
+from .constantes import ACCIONES
+
 CAMISA = 'camisa'
 CAMISETA = 'camiseta'
 PANTALON = 'pantalon'
@@ -74,3 +76,13 @@ class Match(models.Model):
     @property
     def total_matches(self):
         return self.positivos + self.negativos + self.neutrales
+
+
+class Voto(models.Model):
+    usuario = models.ForeignKey('usuario.Usuario', on_delete=models.CASCADE)
+    match = models.ForeignKey('prenda.Match', on_delete=models.CASCADE)
+    veredicto = models.CharField(
+        choices=ACCIONES,
+        max_length=20,
+    )
+

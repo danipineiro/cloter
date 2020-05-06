@@ -1,11 +1,6 @@
+from .constantes import ACCIONES
 from .models import Prenda, Match
 from rest_framework import serializers
-
-ACCIONES = [
-    (1, 'positivo'),
-    (0, 'neutral'),
-    (-1, 'negativo'),
-]
 
 
 class PrendaSerializer(serializers.ModelSerializer):
