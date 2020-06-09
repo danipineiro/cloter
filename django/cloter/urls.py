@@ -16,10 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from prenda import urls as prenda_urls
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(prenda_urls))
+    path('api/', include('prenda.urls')),
+    path('api/', include('usuario.urls'))
 ]
